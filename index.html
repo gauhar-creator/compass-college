@@ -1,0 +1,712 @@
+<!DOCTYPE html>
+<html lang="ru" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Compass College | Колледж IT и Креативных Индустрий в Бишкеке</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        lime: {
+                            400: '#a3e635',
+                            500: '#84cc16',
+                            600: '#65a30d',
+                            700: '#4d7c0f',
+                        },
+                        dark: {
+                            900: '#0f172a',
+                            800: '#1e293b',
+                            700: '#334155',
+                        }
+                    },
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
+    <!-- FontAwesome Icons CDN -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <style>
+        body { font-family: 'Inter', sans-serif; }
+        .glass {
+            background: rgba(30, 41, 59, 0.7);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        .glow-effect {
+            box-shadow: 0 0 25px rgba(132, 204, 22, 0.35);
+        }
+        .glow-text {
+            text-shadow: 0 0 12px rgba(132, 204, 22, 0.5);
+        }
+    </style>
+</head>
+<body class="bg-slate-950 text-slate-100 antialiased selection:bg-lime-500 selection:text-slate-950 min-h-screen flex flex-col justify-between">
+
+    <header class="fixed top-0 left-0 w-full z-50 glass transition-all duration-300">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
+            <!-- Logo -->
+            <a href="#" class="flex items-center gap-3 group">
+                <div class="w-10 h-10 rounded-xl bg-lime-500 flex items-center justify-center text-slate-950 font-black text-xl group-hover:scale-105 transition-transform shadow-lg shadow-lime-500/20">
+                    <i class="fa-solid fa-compass text-slate-950"></i>
+                </div>
+                <div class="flex flex-col">
+                    <span class="font-extrabold text-xl tracking-tight text-white flex items-center gap-1">
+                        COMPASS <span class="text-lime-400">COLLEGE</span>
+                    </span>
+                    <span class="text-[10px] text-slate-400 font-medium tracking-wider uppercase">Бишкек • После 9 класса</span>
+                </div>
+            </a>
+
+            <!-- Desktop Nav -->
+            <nav class="hidden md:flex items-center gap-8 font-medium text-sm">
+                <a href="#programs" class="text-slate-300 hover:text-lime-400 transition-colors">Специальности</a>
+                <a href="#benefits" class="text-slate-300 hover:text-lime-400 transition-colors">Преимущества</a>
+                <a href="#roadmap" class="text-slate-300 hover:text-lime-400 transition-colors">Как поступить</a>
+                <a href="#faq" class="text-slate-300 hover:text-lime-400 transition-colors">FAQ</a>
+                <a href="#contacts" class="text-slate-300 hover:text-lime-400 transition-colors">Контакты</a>
+            </nav>
+
+            <!-- Actions -->
+            <div class="hidden md:flex items-center gap-4">
+                <button onclick="openModal('Open Door Day')" class="bg-lime-500 hover:bg-lime-400 text-slate-950 font-bold px-5 py-2.5 rounded-xl transition-all shadow-lg shadow-lime-500/25 hover:shadow-lime-500/40 hover:-translate-y-0.5 active:translate-y-0">
+                    День открытых дверей
+                </button>
+            </div>
+
+            <!-- Mobile Menu Toggle -->
+            <button id="mobileMenuBtn" class="md:hidden text-slate-300 hover:text-white p-2">
+                <i class="fa-solid fa-bars text-2xl"></i>
+            </button>
+        </div>
+
+        <!-- Mobile Nav Menu -->
+        <div id="mobileMenu" class="hidden md:hidden bg-slate-900 border-b border-slate-800 px-6 py-6 space-y-4">
+            <a href="#programs" class="block text-slate-200 hover:text-lime-400 font-medium" onclick="toggleMobileMenu()">Специальности</a>
+            <a href="#benefits" class="block text-slate-200 hover:text-lime-400 font-medium" onclick="toggleMobileMenu()">Преимущества</a>
+            <a href="#roadmap" class="block text-slate-200 hover:text-lime-400 font-medium" onclick="toggleMobileMenu()">Как поступить</a>
+            <a href="#faq" class="block text-slate-200 hover:text-lime-400 font-medium" onclick="toggleMobileMenu()">FAQ</a>
+            <a href="#contacts" class="block text-slate-200 hover:text-lime-400 font-medium" onclick="toggleMobileMenu()">Контакты</a>
+            <button onclick="openModal('Open Door Day'); toggleMobileMenu();" class="w-full bg-lime-500 text-slate-950 font-bold py-3 rounded-xl">
+                Записаться на день дверей
+            </button>
+        </div>
+    </header>
+
+    <section class="relative pt-32 pb-20 md:pt-44 md:pb-32 overflow-hidden">
+        <!-- Background decorative elements -->
+        <div class="absolute top-1/4 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-lime-500/10 rounded-full blur-[140px] pointer-events-none"></div>
+        <div class="absolute top-1/3 right-10 w-72 h-72 bg-emerald-500/10 rounded-full blur-[100px] pointer-events-none"></div>
+
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+            <div class="grid lg:grid-cols-12 gap-12 items-center">
+                
+                <div class="lg:col-span-7 space-y-6 text-center lg:text-left">
+                    <!-- Badge -->
+                    <div class="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-slate-800/80 border border-slate-700/80 text-lime-400 text-xs sm:text-sm font-semibold">
+                        <span class="w-2 h-2 rounded-full bg-lime-400 animate-pulse"></span>
+                        Набор 2026 открыт • Ближайший день дверей: Суббота, 14:00
+                    </div>
+
+                    <!-- Main Title -->
+                    <h1 class="text-4xl sm:text-5xl lg:text-6xl font-black text-white tracking-tight leading-[1.15]">
+                        Твоя карьера в <span class="text-transparent bg-clip-text bg-gradient-to-r from-lime-400 via-lime-500 to-emerald-400">IT и Креативе</span> начинается после 9 класса!
+                    </h1>
+
+                    <p class="text-lg sm:text-xl text-slate-300 max-w-2xl mx-auto lg:mx-0 font-normal leading-relaxed">
+                        Поступи в Compass College в Бишкеке. 80% практики, проекты вместо контрольных и молодые преподаватели-практики из реальной индустрии.
+                    </p>
+
+                    <!-- CTA Buttons -->
+                    <div class="flex flex-col sm:flex-row items-center justify-center lg:justify-start gap-4 pt-4">
+                        <button onclick="openModal('Заявка на консультацию')" class="w-full sm:w-auto bg-lime-500 hover:bg-lime-400 text-slate-950 font-extrabold px-8 py-4 rounded-xl transition-all shadow-xl shadow-lime-500/25 hover:scale-105 active:scale-95 text-center">
+                            Подать заявку на поступление
+                        </button>
+                        <a href="#programs" class="w-full sm:w-auto bg-slate-800 hover:bg-slate-700 text-white font-semibold px-8 py-4 rounded-xl border border-slate-700 transition-all text-center">
+                            Смотреть специальности
+                        </a>
+                    </div>
+
+                    <!-- Stats / Mini badges -->
+                    <div class="pt-8 border-t border-slate-800/80 grid grid-cols-3 gap-4 max-w-lg mx-auto lg:mx-0 text-left">
+                        <div>
+                            <div class="text-2xl sm:text-3xl font-extrabold text-lime-400">80%</div>
+                            <div class="text-xs text-slate-400">Практики и кейсов</div>
+                        </div>
+                        <div>
+                            <div class="text-2xl sm:text-3xl font-extrabold text-white">4</div>
+                            <div class="text-xs text-slate-400">Топ-специальности</div>
+                        </div>
+                        <div>
+                            <div class="text-2xl sm:text-3xl font-extrabold text-lime-400">100%</div>
+                            <div class="text-xs text-slate-400">Портфолио к выпуску</div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Hero Graphic Card -->
+                <div class="lg:col-span-5 relative">
+                    <div class="relative mx-auto max-w-md lg:max-w-none">
+                        <div class="absolute -inset-1 rounded-3xl bg-gradient-to-r from-lime-500 to-emerald-500 opacity-30 blur-xl"></div>
+                        <div class="relative bg-slate-900 border border-slate-800 rounded-3xl p-6 sm:p-8 space-y-6">
+                            <div class="flex items-center justify-between pb-4 border-b border-slate-800">
+                                <div class="flex items-center gap-3">
+                                    <div class="w-3 h-3 rounded-full bg-red-500"></div>
+                                    <div class="w-3 h-3 rounded-full bg-yellow-500"></div>
+                                    <div class="w-3 h-3 rounded-full bg-green-500"></div>
+                                </div>
+                                <span class="text-xs font-mono text-slate-500">compass_student.profile</span>
+                            </div>
+
+                            <div class="space-y-4">
+                                <div class="p-4 rounded-2xl bg-slate-800/60 border border-slate-700/50 flex items-center gap-4">
+                                    <div class="w-12 h-12 rounded-xl bg-lime-500/10 text-lime-400 flex items-center justify-center text-xl shrink-0">
+                                        <i class="fa-solid fa-code"></i>
+                                    </div>
+                                    <div>
+                                        <div class="text-sm font-bold text-white">IT & Web Engineering</div>
+                                        <div class="text-xs text-slate-400">Пиши код и создавай приложения</div>
+                                    </div>
+                                </div>
+
+                                <div class="p-4 rounded-2xl bg-slate-800/60 border border-slate-700/50 flex items-center gap-4">
+                                    <div class="w-12 h-12 rounded-xl bg-lime-500/10 text-lime-400 flex items-center justify-center text-xl shrink-0">
+                                        <i class="fa-solid fa-shirt"></i>
+                                    </div>
+                                    <div>
+                                        <div class="text-sm font-bold text-white">Fashion Design</div>
+                                        <div class="text-xs text-slate-400">Создавай свои коллекции одежды</div>
+                                    </div>
+                                </div>
+
+                                <div class="p-4 rounded-2xl bg-slate-800/60 border border-slate-700/50 flex items-center gap-4">
+                                    <div class="w-12 h-12 rounded-xl bg-lime-500/10 text-lime-400 flex items-center justify-center text-xl shrink-0">
+                                        <i class="fa-solid fa-couch"></i>
+                                    </div>
+                                    <div>
+                                        <div class="text-sm font-bold text-white">Interior Design</div>
+                                        <div class="text-xs text-slate-400">Проектируй современные интерьеры</div>
+                                    </div>
+                                </div>
+
+                                <div class="p-4 rounded-2xl bg-slate-800/60 border border-slate-700/50 flex items-center gap-4">
+                                    <div class="w-12 h-12 rounded-xl bg-lime-500/10 text-lime-400 flex items-center justify-center text-xl shrink-0">
+                                        <i class="fa-solid fa-clapperboard"></i>
+                                    </div>
+                                    <div>
+                                        <div class="text-sm font-bold text-white">Media Production</div>
+                                        <div class="text-xs text-slate-400">Снимай, монтируй и продюсируй</div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="pt-2 flex items-center justify-between text-xs text-slate-400">
+                                <span class="flex items-center gap-1.5"><i class="fa-solid fa-location-dot text-lime-400"></i> Бишкек</span>
+                                <span class="flex items-center gap-1.5"><i class="fa-solid fa-graduation-cap text-lime-400"></i> Диплом + Портфолио</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <section id="programs" class="py-24 bg-slate-900/50 relative border-y border-slate-800">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center max-w-3xl mx-auto space-y-4 mb-16">
+                <span class="text-lime-400 font-bold text-sm tracking-widest uppercase">Направления обучения</span>
+                <h2 class="text-3xl sm:text-4xl font-extrabold text-white">Выбери профессию будущего</h2>
+                <p class="text-slate-400">Обучение строится на реальных кейсах. К выпуску у тебя будет полноценное портфолио работ для старта карьеры.</p>
+            </div>
+
+            <!-- Programs Grid -->
+            <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
+                
+                <!-- Card 1: IT -->
+                <div class="bg-slate-900 border border-slate-800 rounded-3xl p-6 flex flex-col justify-between hover:border-lime-500/50 transition-all group hover:-translate-y-1">
+                    <div class="space-y-4">
+                        <div class="w-14 h-14 rounded-2xl bg-lime-500/10 text-lime-400 flex items-center justify-center text-2xl group-hover:bg-lime-500 group-hover:text-slate-950 transition-colors">
+                            <i class="fa-solid fa-laptop-code"></i>
+                        </div>
+                        <h3 class="text-xl font-bold text-white">IT & Software Engineering</h3>
+                        <p class="text-slate-400 text-sm leading-relaxed">Разработка веб-сайтов, мобильных приложений и сервисов. Обучение актуальным языкам программирования.</p>
+                        
+                        <div class="pt-2">
+                            <span class="text-xs font-semibold text-slate-300 block mb-2">Чему научишься:</span>
+                            <div class="flex flex-wrap gap-1.5">
+                                <span class="px-2.5 py-1 rounded-md bg-slate-800 text-slate-300 text-xs">Python</span>
+                                <span class="px-2.5 py-1 rounded-md bg-slate-800 text-slate-300 text-xs">JavaScript</span>
+                                <span class="px-2.5 py-1 rounded-md bg-slate-800 text-slate-300 text-xs">Web Dev</span>
+                                <span class="px-2.5 py-1 rounded-md bg-slate-800 text-slate-300 text-xs">Databases</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <button onclick="openProgramDetails('it')" class="mt-8 w-full bg-slate-800 hover:bg-lime-500 hover:text-slate-950 text-white font-semibold py-3 rounded-xl transition-all text-sm flex items-center justify-center gap-2">
+                        <span>Узнать подробнее</span>
+                        <i class="fa-solid fa-arrow-right text-xs"></i>
+                    </button>
+                </div>
+
+                <!-- Card 2: Fashion Design -->
+                <div class="bg-slate-900 border border-slate-800 rounded-3xl p-6 flex flex-col justify-between hover:border-lime-500/50 transition-all group hover:-translate-y-1">
+                    <div class="space-y-4">
+                        <div class="w-14 h-14 rounded-2xl bg-lime-500/10 text-lime-400 flex items-center justify-center text-2xl group-hover:bg-lime-500 group-hover:text-slate-950 transition-colors">
+                            <i class="fa-solid fa-scissors"></i>
+                        </div>
+                        <h3 class="text-xl font-bold text-white">Fashion Design</h3>
+                        <p class="text-slate-400 text-sm leading-relaxed">От фэшн-иллюстрации и работы с тканью до конструирования и создания собственных капсульных коллекций.</p>
+                        
+                        <div class="pt-2">
+                            <span class="text-xs font-semibold text-slate-300 block mb-2">Чему научишься:</span>
+                            <div class="flex flex-wrap gap-1.5">
+                                <span class="px-2.5 py-1 rounded-md bg-slate-800 text-slate-300 text-xs">Скетчинг</span>
+                                <span class="px-2.5 py-1 rounded-md bg-slate-800 text-slate-300 text-xs">Кройка</span>
+                                <span class="px-2.5 py-1 rounded-md bg-slate-800 text-slate-300 text-xs">Styling</span>
+                                <span class="px-2.5 py-1 rounded-md bg-slate-800 text-slate-300 text-xs">Fashion Show</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <button onclick="openProgramDetails('fashion')" class="mt-8 w-full bg-slate-800 hover:bg-lime-500 hover:text-slate-950 text-white font-semibold py-3 rounded-xl transition-all text-sm flex items-center justify-center gap-2">
+                        <span>Узнать подробнее</span>
+                        <i class="fa-solid fa-arrow-right text-xs"></i>
+                    </button>
+                </div>
+
+                <!-- Card 3: Interior Design -->
+                <div class="bg-slate-900 border border-slate-800 rounded-3xl p-6 flex flex-col justify-between hover:border-lime-500/50 transition-all group hover:-translate-y-1">
+                    <div class="space-y-4">
+                        <div class="w-14 h-14 rounded-2xl bg-lime-500/10 text-lime-400 flex items-center justify-center text-2xl group-hover:bg-lime-500 group-hover:text-slate-950 transition-colors">
+                            <i class="fa-solid fa-pen-ruler"></i>
+                        </div>
+                        <h3 class="text-xl font-bold text-white">Interior Design</h3>
+                        <p class="text-slate-400 text-sm leading-relaxed">Проектирование стильных жилых и коммерческих пространств, 3D-визуализация и подбор материалов.</p>
+                        
+                        <div class="pt-2">
+                            <span class="text-xs font-semibold text-slate-300 block mb-2">Чему научишься:</span>
+                            <div class="flex flex-wrap gap-1.5">
+                                <span class="px-2.5 py-1 rounded-md bg-slate-800 text-slate-300 text-xs">AutoCAD</span>
+                                <span class="px-2.5 py-1 rounded-md bg-slate-800 text-slate-300 text-xs">3Ds Max</span>
+                                <span class="px-2.5 py-1 rounded-md bg-slate-800 text-slate-300 text-xs">Планировки</span>
+                                <span class="px-2.5 py-1 rounded-md bg-slate-800 text-slate-300 text-xs">Колористика</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <button onclick="openProgramDetails('interior')" class="mt-8 w-full bg-slate-800 hover:bg-lime-500 hover:text-slate-950 text-white font-semibold py-3 rounded-xl transition-all text-sm flex items-center justify-center gap-2">
+                        <span>Узнать подробнее</span>
+                        <i class="fa-solid fa-arrow-right text-xs"></i>
+                    </button>
+                </div>
+
+                <!-- Card 4: Media Production -->
+                <div class="bg-slate-900 border border-slate-800 rounded-3xl p-6 flex flex-col justify-between hover:border-lime-500/50 transition-all group hover:-translate-y-1">
+                    <div class="space-y-4">
+                        <div class="w-14 h-14 rounded-2xl bg-lime-500/10 text-lime-400 flex items-center justify-center text-2xl group-hover:bg-lime-500 group-hover:text-slate-950 transition-colors">
+                            <i class="fa-solid fa-video"></i>
+                        </div>
+                        <h3 class="text-xl font-bold text-white">Media Production</h3>
+                        <p class="text-slate-400 text-sm leading-relaxed">Создание видеоконтента, режиссура, мобильная съемка, профессиональный монтаж и работа со звуком.</p>
+                        
+                        <div class="pt-2">
+                            <span class="text-xs font-semibold text-slate-300 block mb-2">Чему научишься:</span>
+                            <div class="flex flex-wrap gap-1.5">
+                                <span class="px-2.5 py-1 rounded-md bg-slate-800 text-slate-300 text-xs">Premiere Pro</span>
+                                <span class="px-2.5 py-1 rounded-md bg-slate-800 text-slate-300 text-xs">Монтаж</span>
+                                <span class="px-2.5 py-1 rounded-md bg-slate-800 text-slate-300 text-xs">Свет & Звук</span>
+                                <span class="px-2.5 py-1 rounded-md bg-slate-800 text-slate-300 text-xs">SMM Media</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <button onclick="openProgramDetails('media')" class="mt-8 w-full bg-slate-800 hover:bg-lime-500 hover:text-slate-950 text-white font-semibold py-3 rounded-xl transition-all text-sm flex items-center justify-center gap-2">
+                        <span>Узнать подробнее</span>
+                        <i class="fa-solid fa-arrow-right text-xs"></i>
+                    </button>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <section id="benefits" class="py-24 relative">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center max-w-3xl mx-auto space-y-4 mb-16">
+                <span class="text-lime-400 font-bold text-sm tracking-widest uppercase">Почему именно мы</span>
+                <h2 class="text-3xl sm:text-4xl font-extrabold text-white">В чем суперсила Compass College?</h2>
+                <p class="text-slate-400">Мы убрали устаревшую рутину и скучные лекции, сделав упор на практику и актуальные навыки.</p>
+            </div>
+
+            <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
+                
+                <div class="bg-slate-900/60 border border-slate-800 p-8 rounded-3xl space-y-4 relative overflow-hidden">
+                    <div class="text-4xl text-lime-400 font-black">01</div>
+                    <h3 class="text-xl font-bold text-white">80% Практики</h3>
+                    <p class="text-slate-400 text-sm leading-relaxed">
+                        Минимум абстрактных теорий. С первых недель ты создаешь реальные кейсы, которые можно положить в портфолио.
+                    </p>
+                </div>
+
+                <div class="bg-slate-900/60 border border-slate-800 p-8 rounded-3xl space-y-4 relative overflow-hidden">
+                    <div class="text-4xl text-lime-400 font-black">02</div>
+                    <h3 class="text-xl font-bold text-white">Преподаватели-практики</h3>
+                    <p class="text-slate-400 text-sm leading-relaxed">
+                        Учись у тех, кто сам работает в IT-компаниях, модного домах, дизайн-бюро и медиа-студиях Бишкека.
+                    </p>
+                </div>
+
+                <div class="bg-slate-900/60 border border-slate-800 p-8 rounded-3xl space-y-4 relative overflow-hidden">
+                    <div class="text-4xl text-lime-400 font-black">03</div>
+                    <h3 class="text-xl font-bold text-white">Современный Кампус</h3>
+                    <p class="text-slate-400 text-sm leading-relaxed">
+                        Мощные компьютеры, швейные мастерские, зоны отдыха и вдохновляющие пространства для брейнштормов.
+                    </p>
+                </div>
+
+                <div class="bg-slate-900/60 border border-slate-800 p-8 rounded-3xl space-y-4 relative overflow-hidden">
+                    <div class="text-4xl text-lime-400 font-black">04</div>
+                    <h3 class="text-xl font-bold text-white">Крутое Комьюнити</h3>
+                    <p class="text-slate-400 text-sm leading-relaxed">
+                        Окружение единомышленников, командные хакатоны, творческие выставки и совместные проекты.
+                    </p>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <section id="roadmap" class="py-24 bg-slate-900/50 border-t border-slate-800">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center max-w-3xl mx-auto space-y-4 mb-16">
+                <span class="text-lime-400 font-bold text-sm tracking-widest uppercase">Пошаговый процесс</span>
+                <h2 class="text-3xl sm:text-4xl font-extrabold text-white">Как поступить в колледжей после 9 класса</h2>
+                <p class="text-slate-400">Простой и прозрачный путь от заявки до первой лекции</p>
+            </div>
+
+            <div class="grid md:grid-cols-4 gap-8 relative">
+                
+                <!-- Step 1 -->
+                <div class="bg-slate-900 border border-slate-800 p-6 rounded-2xl relative">
+                    <div class="w-10 h-10 rounded-xl bg-lime-500 text-slate-950 font-bold flex items-center justify-center mb-4">1</div>
+                    <h3 class="text-lg font-bold text-white mb-2">Заявка</h3>
+                    <p class="text-slate-400 text-sm">Оставь заявку на сайте или записайся на День открытых дверей в Бишкеке.</p>
+                </div>
+
+                <!-- Step 2 -->
+                <div class="bg-slate-900 border border-slate-800 p-6 rounded-2xl relative">
+                    <div class="w-10 h-10 rounded-xl bg-lime-500 text-slate-950 font-bold flex items-center justify-center mb-4">2</div>
+                    <h3 class="text-lg font-bold text-white mb-2">Консультация</h3>
+                    <p class="text-slate-400 text-sm">Встречаемся в кампусе, проясняем все вопросы с тобой и родителями.</p>
+                </div>
+
+                <!-- Step 3 -->
+                <div class="bg-slate-900 border border-slate-800 p-6 rounded-2xl relative">
+                    <div class="w-10 h-10 rounded-xl bg-lime-500 text-slate-950 font-bold flex items-center justify-center mb-4">3</div>
+                    <h3 class="text-lg font-bold text-white mb-2">Собеседование</h3>
+                    <p class="text-slate-400 text-sm">Проходим дружелюбное интервью для выбора подходящего направления.</p>
+                </div>
+
+                <!-- Step 4 -->
+                <div class="bg-slate-900 border border-slate-800 p-6 rounded-2xl relative">
+                    <div class="w-10 h-10 rounded-xl bg-lime-500 text-slate-950 font-bold flex items-center justify-center mb-4">4</div>
+                    <h3 class="text-lg font-bold text-white mb-2">Старт учебы!</h3>
+                    <p class="text-slate-400 text-sm">Заключаем договор, получаем студенческий и погружаемся в практику.</p>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <section id="apply" class="py-24 relative overflow-hidden">
+        <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="bg-gradient-to-b from-slate-900 to-slate-900/90 border border-lime-500/30 rounded-3xl p-8 sm:p-12 shadow-2xl relative overflow-hidden">
+                <div class="absolute -right-20 -bottom-20 w-80 h-80 bg-lime-500/10 rounded-full blur-3xl pointer-events-none"></div>
+
+                <div class="grid lg:grid-cols-12 gap-8 items-center">
+                    <div class="lg:col-span-5 space-y-4">
+                        <span class="text-lime-400 font-bold text-sm tracking-widest uppercase">Запишись сейчас</span>
+                        <h2 class="text-3xl font-extrabold text-white">Готов сделать шаг к любимой профессии?</h2>
+                        <p class="text-slate-300 text-sm leading-relaxed">
+                            Оставь контакты — наш консультант свяжется с тобой в WhatsApp, ответит на все вопросы и пригласит на бесплатную экскурсию по кампусу!
+                        </p>
+                        <div class="space-y-3 pt-4">
+                            <div class="flex items-center gap-3 text-sm text-slate-300">
+                                <i class="fa-solid fa-check text-lime-400"></i>
+                                <span>Экскурсия по аудиториям</span>
+                            </div>
+                            <div class="flex items-center gap-3 text-sm text-slate-300">
+                                <i class="fa-solid fa-check text-lime-400"></i>
+                                <span>Консультация для родителей</span>
+                            </div>
+                            <div class="flex items-center gap-3 text-sm text-slate-300">
+                                <i class="fa-solid fa-check text-lime-400"></i>
+                                <span>Профориентационный тест</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="lg:col-span-7">
+                        <form id="landingForm" onsubmit="handleFormSubmit(event)" class="space-y-4 bg-slate-950/60 p-6 rounded-2xl border border-slate-800">
+                            <div>
+                                <label class="block text-xs font-semibold text-slate-300 mb-1">Имя и Фамилия *</label>
+                                <input type="text" required placeholder="Например: Алай Русланов" class="w-full bg-slate-900 border border-slate-700 rounded-xl px-4 py-3 text-white focus:outline-none focus:border-lime-400 text-sm">
+                            </div>
+
+                            <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                                <div>
+                                    <label class="block text-xs font-semibold text-slate-300 mb-1">WhatsApp Номер *</label>
+                                    <input type="tel" required placeholder="+996 (___) __-__-__" class="w-full bg-slate-900 border border-slate-700 rounded-xl px-4 py-3 text-white focus:outline-none focus:border-lime-400 text-sm">
+                                </div>
+                                <div>
+                                    <label class="block text-xs font-semibold text-slate-300 mb-1">Кто заполняет? *</label>
+                                    <select required class="w-full bg-slate-900 border border-slate-700 rounded-xl px-4 py-3 text-white focus:outline-none focus:border-lime-400 text-sm">
+                                        <option value="student">Выпускник 9 класса</option>
+                                        <option value="parent">Родитель</option>
+                                    </select>
+                                </div>
+                            </div>
+
+                            <div>
+                                <label class="block text-xs font-semibold text-slate-300 mb-1">Интересующая специальность</label>
+                                <select class="w-full bg-slate-900 border border-slate-700 rounded-xl px-4 py-3 text-white focus:outline-none focus:border-lime-400 text-sm">
+                                    <option value="it">IT & Software Engineering</option>
+                                    <option value="fashion">Fashion Design</option>
+                                    <option value="interior">Interior Design</option>
+                                    <option value="media">Media Production</option>
+                                    <option value="undecided">Ещё не определился(ась)</option>
+                                </select>
+                            </div>
+
+                            <button type="submit" class="w-full bg-lime-500 hover:bg-lime-400 text-slate-950 font-extrabold py-4 rounded-xl transition-all shadow-lg shadow-lime-500/25">
+                                Отправить заявку
+                            </button>
+
+                            <p class="text-[11px] text-slate-500 text-center">
+                                Нажимая кнопку, вы соглашаетесь на обработку персональных данных.
+                            </p>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="faq" class="py-24 bg-slate-900/50 border-t border-slate-800">
+        <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 space-y-12">
+            <div class="text-center space-y-4">
+                <span class="text-lime-400 font-bold text-sm tracking-widest uppercase">Ответы на вопросы</span>
+                <h2 class="text-3xl sm:text-4xl font-extrabold text-white">Часто задаваемые вопросы</h2>
+            </div>
+
+            <div class="space-y-4">
+                
+                <div class="border border-slate-800 bg-slate-900 rounded-2xl overflow-hidden">
+                    <button onclick="toggleFaq(this)" class="w-full p-6 text-left flex items-center justify-between font-bold text-white hover:text-lime-400 transition-colors">
+                        <span>Нужно ли сдавать ОРТ или экзамены при поступлении?</span>
+                        <i class="fa-solid fa-chevron-down transition-transform"></i>
+                    </button>
+                    <div class="hidden p-6 pt-0 text-slate-400 text-sm leading-relaxed border-t border-slate-800/50">
+                        Поступление происходит на основе аттестата за 9 класс и индивидуального собеседования. Мы оцениваем вашу мотивацию и стремление учиться!
+                    </div>
+                </div>
+
+                <div class="border border-slate-800 bg-slate-900 rounded-2xl overflow-hidden">
+                    <button onclick="toggleFaq(this)" class="w-full p-6 text-left flex items-center justify-between font-bold text-white hover:text-lime-400 transition-colors">
+                        <span>Какого государственного образца выдается диплом?</span>
+                        <i class="fa-solid fa-chevron-down transition-transform"></i>
+                    </button>
+                    <div class="hidden p-6 pt-0 text-slate-400 text-sm leading-relaxed border-t border-slate-800/50">
+                        Выпускники получают официальный диплом о среднем профессиональном образовании, а также сертификаты о прохождении практических дисциплин.
+                    </div>
+                </div>
+
+                <div class="border border-slate-800 bg-slate-900 rounded-2xl overflow-hidden">
+                    <button onclick="toggleFaq(this)" class="w-full p-6 text-left flex items-center justify-between font-bold text-white hover:text-lime-400 transition-colors">
+                        <span>Можно ли совмещать учебу с подготовкой к работе?</span>
+                        <i class="fa-solid fa-chevron-down transition-transform"></i>
+                    </button>
+                    <div class="hidden p-6 pt-0 text-slate-400 text-sm leading-relaxed border-t border-slate-800/50">
+                        Да! Обучение выстроено так, чтобы студенты работали над реальными кейсами с партнерами колледжа уже со 2 курса.
+                    </div>
+                </div>
+
+                <div class="border border-slate-800 bg-slate-900 rounded-2xl overflow-hidden">
+                    <button onclick="toggleFaq(this)" class="w-full p-6 text-left flex items-center justify-between font-bold text-white hover:text-lime-400 transition-colors">
+                        <span>Где находится кампус?</span>
+                        <i class="fa-solid fa-chevron-down transition-transform"></i>
+                    </button>
+                    <div class="hidden p-6 pt-0 text-slate-400 text-sm leading-relaxed border-t border-slate-800/50">
+                        Наш главный кампус расположен в удобном районе г. Бишкек с хорошей транспортной развязкой.
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <footer id="contacts" class="bg-slate-950 border-t border-slate-800 py-16 text-slate-400 text-sm">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 grid grid-cols-1 md:grid-cols-4 gap-12">
+            
+            <div class="space-y-4">
+                <div class="flex items-center gap-3">
+                    <div class="w-8 h-8 rounded-lg bg-lime-500 flex items-center justify-center text-slate-950 font-black">
+                        <i class="fa-solid fa-compass"></i>
+                    </div>
+                    <span class="font-extrabold text-lg text-white">COMPASS COLLEGE</span>
+                </div>
+                <p class="text-xs text-slate-500 leading-relaxed">
+                    Инновационный колледж креативных индустрий и IT в Бишкеке.
+                </p>
+            </div>
+
+            <div>
+                <h4 class="font-bold text-white mb-4">Навигация</h4>
+                <ul class="space-y-2 text-xs">
+                    <li><a href="#programs" class="hover:text-lime-400">Специальности</a></li>
+                    <li><a href="#benefits" class="hover:text-lime-400">Преимущества</a></li>
+                    <li><a href="#roadmap" class="hover:text-lime-400">Как поступить</a></li>
+                    <li><a href="#faq" class="hover:text-lime-400">Вопросы и ответы</a></li>
+                </ul>
+            </div>
+
+            <div>
+                <h4 class="font-bold text-white mb-4">Контакты в Бишкеке</h4>
+                <ul class="space-y-2 text-xs">
+                    <li class="flex items-center gap-2"><i class="fa-solid fa-location-dot text-lime-400"></i> г. Бишкек, Кыргызстан</li>
+                    <li class="flex items-center gap-2"><i class="fa-solid fa-phone text-lime-400"></i> +996 (555) 00-00-00</li>
+                    <li class="flex items-center gap-2"><i class="fa-brands fa-whatsapp text-lime-400"></i> +996 (700) 00-00-00</li>
+                </ul>
+            </div>
+
+            <div>
+                <h4 class="font-bold text-white mb-4">Мы в соцсетях</h4>
+                <div class="flex gap-3 text-lg">
+                    <a href="#" class="w-10 h-10 rounded-xl bg-slate-900 border border-slate-800 flex items-center justify-center hover:text-lime-400 hover:border-lime-500 transition-all">
+                        <i class="fa-brands fa-instagram"></i>
+                    </a>
+                    <a href="#" class="w-10 h-10 rounded-xl bg-slate-900 border border-slate-800 flex items-center justify-center hover:text-lime-400 hover:border-lime-500 transition-all">
+                        <i class="fa-brands fa-tiktok"></i>
+                    </a>
+                    <a href="#" class="w-10 h-10 rounded-xl bg-slate-900 border border-slate-800 flex items-center justify-center hover:text-lime-400 hover:border-lime-500 transition-all">
+                        <i class="fa-brands fa-telegram"></i>
+                    </a>
+                </div>
+            </div>
+
+        </div>
+
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mt-12 pt-8 border-t border-slate-900 text-center text-xs text-slate-600">
+            © 2026 Compass College Bishkek. Все права защищены.
+        </div>
+    </footer>
+
+    <!-- Modal for General Application -->
+    <div id="modalOverlay" class="fixed inset-0 bg-slate-950/80 backdrop-blur-md hidden z-50 flex items-center justify-center p-4">
+        <div class="bg-slate-900 border border-slate-800 rounded-3xl p-8 max-w-md w-full relative space-y-6">
+            <button onclick="closeModal()" class="absolute top-6 right-6 text-slate-400 hover:text-white">
+                <i class="fa-solid fa-xmark text-xl"></i>
+            </button>
+
+            <div class="space-y-2">
+                <h3 id="modalTitle" class="text-2xl font-bold text-white">Запись на консультацию</h3>
+                <p class="text-slate-400 text-xs">Заполните форму, и мы свяжемся с вами в течение 15 минут.</p>
+            </div>
+
+            <form onsubmit="handleModalSubmit(event)" class="space-y-4">
+                <div>
+                    <label class="block text-xs text-slate-300 mb-1">Имя</label>
+                    <input type="text" required placeholder="Ваше имя" class="w-full bg-slate-950 border border-slate-800 rounded-xl px-4 py-3 text-white text-sm focus:border-lime-400 focus:outline-none">
+                </div>
+                <div>
+                    <label class="block text-xs text-slate-300 mb-1">WhatsApp телефон</label>
+                    <input type="tel" required placeholder="+996 (___) __-__-__" class="w-full bg-slate-950 border border-slate-800 rounded-xl px-4 py-3 text-white text-sm focus:border-lime-400 focus:outline-none">
+                </div>
+                <button type="submit" class="w-full bg-lime-500 hover:bg-lime-400 text-slate-950 font-bold py-3.5 rounded-xl transition-all">
+                    Отправить
+                </button>
+            </form>
+        </div>
+    </div>
+
+    <!-- Script Logic -->
+    <script>
+        // Toggle Mobile Navigation
+        function toggleMobileMenu() {
+            const menu = document.getElementById('mobileMenu');
+            menu.classList.toggle('hidden');
+        }
+
+        document.getElementById('mobileMenuBtn').addEventListener('click', toggleMobileMenu);
+
+        // Toggle Accordion FAQ
+        function toggleFaq(button) {
+            const content = button.nextElementSibling;
+            const icon = button.querySelector('i');
+            
+            content.classList.toggle('hidden');
+            icon.classList.toggle('rotate-180');
+        }
+
+        // Modal Functionalities
+        function openModal(title) {
+            document.getElementById('modalTitle').innerText = title || 'Запись на день дверей';
+            document.getElementById('modalOverlay').classList.remove('hidden');
+        }
+
+        function closeModal() {
+            document.getElementById('modalOverlay').classList.add('hidden');
+        }
+
+        function handleFormSubmit(event) {
+            event.preventDefault();
+            alert('Спасибо за заявку! Наш менеджер из Compass College свяжется с вами в WhatsApp!');
+            event.target.reset();
+        }
+
+        function handleModalSubmit(event) {
+            event.preventDefault();
+            alert('Заявка успешно отправлена! До встречи в Compass College!');
+            closeModal();
+            event.target.reset();
+        }
+
+        // Program Details Modal Logic
+        const programDetails = {
+            it: {
+                title: "IT & Software Engineering",
+                desc: "Программа подготовлена совместно с ведущими IT-компаниями. Вы освоите веб-разработку, языки Python и JavaScript, базовые алгоритмы и работу в командах."
+            },
+            fashion: {
+                title: "Fashion Design",
+                desc: "Полный цикл fashion-индустрии: создание скетчей, работа с текстилем, конструирование, пошив и организация собственных показов одежды."
+            },
+            interior: {
+                title: "Interior Design",
+                desc: "Учеба на практике: от чертежей и эргономики до реальной 3D-визуализации в профессиональном софте и работы с объектами заказчиков."
+            },
+            media: {
+                title: "Media Production",
+                desc: "Практический курс съемки и монтажа: работа со светом, звуком, сценариями, монтаж в Adobe Premiere и создание вирусящегося контента."
+            }
+        };
+
+        function openProgramDetails(key) {
+            const program = programDetails[key];
+            if (program) {
+                alert(`${program.title}\n\n${program.desc}`);
+            }
+        }
+    </script>
+</body>
+</html>
